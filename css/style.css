@@ -35,7 +35,7 @@ h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.03em}
 .btn-outline{color:var(--navy);border:1px solid var(--border);background:#fff}
 .btn-outline:hover{border-color:var(--orange);color:var(--orange-dark);transform:translateY(-2px)}
 /* Navbar */
-.navbar{position:fixed;z-index:1000;top:0;left:0;width:100%;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,23,42,.08);transition:.25s}
+.navbar{position:fixed;z-index:1000;top:0;left:0;width:100%;background:#ffb25c;backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,23,42,.08);transition:.25s}
 .navbar.scrolled{box-shadow:0 8px 30px rgba(7,17,31,.08)}
 .nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;min-width:0}
