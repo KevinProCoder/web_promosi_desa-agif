@@ -35,21 +35,226 @@ h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.03em}
 .btn-outline{color:var(--navy);border:1px solid var(--border);background:#fff}
 .btn-outline:hover{border-color:var(--orange);color:var(--orange-dark);transform:translateY(-2px)}
 /* Navbar */
-.navbar{position:fixed;z-index:1000;top:0;left:0;width:100%;background:#ffb25c;backdrop-filter:blur(16px);border-bottom:1px solid rgba(15,23,42,.08);transition:.25s}
-.navbar.scrolled{box-shadow:0 8px 30px rgba(7,17,31,.08)}
-.nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.brand-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--orange),#ffb25c);font-family:"Space Grotesk";font-weight:800;box-shadow:0 8px 22px rgba(255,122,0,.25);flex:none}
-.brand-text{font-family:"Space Grotesk";font-weight:800;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-link{padding:10px 13px;border-radius:10px;font-size:.92rem;font-weight:700;color:#405066;transition:.2s}
-.nav-link:hover,.nav-link.active{color:var(--orange-dark);background:rgba(255,122,0,.08)}
-.menu-toggle{display:none;border:0;background:transparent;width:44px;height:44px;border-radius:12px;cursor:pointer;font-size:1.5rem;color:var(--navy)}
-.mobile-overlay{display:none}
+/* Navbar Smooth Glassmorphism */
+/* State Awal: Paling Atas (Solid Orange) */
+.navbar {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  /* Warna oranye solid tanpa transparansi/blur */
+  background: #ffb25c; 
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Teks & tombol pada keadaan solid */
+.navbar .brand-text {
+  color: #1e293b;
+}
+
+.navbar .nav-link {
+  color: #2c3e50;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* State Kedua: Saat Halaman Di-scroll Turun (Glassmorphism Halus) */
+.navbar.scrolled {
+  /* Berubah menjadi kaca transparan saat scroll */
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Penyesuaian link saat navbar menjadi kaca */
+.navbar.scrolled .nav-link:hover,
+.navbar.scrolled .nav-link.active {
+  color: var(--orange-dark);
+  background: rgba(255, 178, 92, 0.2);
+}
+
+.nav-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), #ffb25c);
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(255, 122, 0, 0.25);
+  flex: none;
+}
+
+.brand-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  color: #1e293b; /* Warna teks dibuat lebih gelap agar kontras di atas kaca */
+  white-space: nowrap;
+}
+
 .brand-logo {
-  height: 40px; /* Sesuaikan tinggi logo dengan desain Anda */
-  width: auto;  /* Menjaga proporsi gambar */
+  height: 40px;
+  width: auto;
   object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Link Navigasi */
+.nav-link {
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+/* Hover Kaca Halus */
+.nav-link:hover,
+.nav-link.active {
+  color: var(--orange-dark);
+  background: rgba(255, 178, 92, 0.15); /* Aksen warna oranye tipis */
+  border: 1px solid rgba(255, 178, 92, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--navy);
+}
+
+.mobile-overlay {
+  display: none;
+}
+
+.nav-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), #ffb25c);
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(255, 122, 0, 0.25);
+  flex: none;
+}
+
+.brand-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Link Navigasi dengan Sentuhan Modern */
+.nav-link {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #2c3e50;
+  transition: all 0.25s ease;
+}
+
+/* Efek Hover Glass pada Link */
+.nav-link:hover,
+.nav-link.active {
+  color: var(--orange-dark);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--navy);
+}
+
+.mobile-overlay {
+  display: none;
 }
 /* Hero */
 .hero{min-height:720px;height:88vh;max-height:900px;position:relative;overflow:hidden;background:var(--navy)}
