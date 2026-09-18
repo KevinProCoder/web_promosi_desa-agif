@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Login administrator Desa Semparuk Sutera."
+  />
+
+  <title>Login Admin | Desa Semparuk Sutera</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+
+  <style>
+
+    /* ========================================
+       LOGIN PAGE
+    ======================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(249,115,22,.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 80%,
+          rgba(249,115,22,.10),
+          transparent 30%
+        ),
+        #111827;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      color: #374151;
+    }
+
+
+    /* ========================================
+       LOGIN WRAPPER
+    ======================================== */
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 430px;
+    }
+
+
+    /* ========================================
+       LOGIN CARD
+    ======================================== */
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 40px 35px;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.28);
+
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+
+    /* ========================================
+       LOGO
+    ======================================== */
+
+    .login-logo {
+      width: 75px;
+      height: 75px;
+
+      object-fit: contain;
+
+      display: block;
+
+      margin: 0 auto 18px;
+    }
+
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+    .login-header h1 {
+      margin: 0 0 8px;
+
+      color: #111827;
+
+      font-size: 26px;
+      font-weight: 800;
+
+      letter-spacing: -0.03em;
+    }
+
+
+    .login-header p {
+      margin: 0;
+
+      color: #6b7280;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* ========================================
+       FORM
+    ======================================== */
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+
+    .form-group label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #111827;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    .input-wrapper {
+      position: relative;
+    }
+
+
+    .input-wrapper i {
+      position: absolute;
+
+      left: 14px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #9ca3af;
+
+      pointer-events: none;
+    }
+
+
+    .input-wrapper input {
+      width: 100%;
+
+      padding: 13px 14px 13px 42px;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 10px;
+
+      outline: none;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      color: #111827;
+
+      transition: .2s;
+    }
+
+
+    .input-wrapper input:focus {
+      border-color: #f97316;
+
+      box-shadow:
+        0 0 0 3px rgba(249,115,22,.12);
+    }
+
+
+    /* ========================================
+       LOGIN BUTTON
+    ======================================== */
+
+    .login-btn {
+      width: 100%;
+
+      border: none;
+
+      border-radius: 10px;
+
+      padding: 14px 20px;
+
+      background: #f97316;
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: .25s;
+
+      margin-top: 5px;
+    }
+
+
+    .login-btn:hover {
+      background: #ea580c;
+
+      transform: translateY(-1px);
+    }
+
+
+    .login-btn:disabled {
+      opacity: .65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+
+    /* ========================================
+       ALERT
+    ======================================== */
+
+    .login-alert {
+      display: none;
+
+      margin-bottom: 18px;
+
+      padding: 12px 14px;
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+
+    .login-alert.show {
+      display: block;
+    }
+
+
+    .login-alert.error {
+      background: #fef2f2;
+
+      border: 1px solid #fecaca;
+
+      color: #991b1b;
+    }
+
+
+    .login-alert.success {
+      background: #f0fdf4;
+
+      border: 1px solid #bbf7d0;
+
+      color: #166534;
+    }
+
+
+    /* ========================================
+       BACK
+    ======================================== */
+
+    .back-home {
+      display: flex;
+
+      justify-content: center;
+
+      margin-top: 22px;
+    }
+
+
+    .back-home a {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      color: #9ca3af;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      transition: .2s;
+    }
+
+
+    .back-home a:hover {
+      color: #f97316;
+    }
+
+
+    /* ========================================
+       FOOTER TEXT
+    ======================================== */
+
+    .login-footer {
+      text-align: center;
+
+      margin-top: 18px;
+
+      color: #6b7280;
+
+      font-size: 10px;
+    }
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 18px;
+      }
+
+      .login-card {
+        padding: 32px 22px;
+      }
+
+      .login-header h1 {
+        font-size: 23px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="login-wrapper">
+
+
+    <div class="login-card">
+
+
+      <!-- LOGO -->
+
+      <img
+        src="assets/images/logo.svg"
+        alt="Logo Desa Semparuk Sutera"
+        class="login-logo"
+      />
+
+
+      <!-- HEADER -->
+
+      <div class="login-header">
+
+        <h1>
+          Admin Desa
+        </h1>
+
+        <p>
+          Masuk ke dashboard pengaduan
+          Desa Semparuk Sutera.
+        </p>
+
+      </div>
+
+
+      <!-- ALERT -->
+
+      <div
+        id="loginAlert"
+        class="login-alert"
+      ></div>
+
+
+      <!-- FORM -->
+
+      <form id="loginForm">
+
+
+        <!-- USERNAME -->
+
+        <div class="form-group">
+
+          <label for="username">
+            Username
+          </label>
+
+          <div class="input-wrapper">
+
+            <i class="fa-solid fa-user"></i>
+
+            <input
+              type="text"
+              id="username"
+              placeholder="Masukkan username"
+              autocomplete="username"
+              required
+            />
+
+          </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label for="password">
+            Password
+          </label>
+
+          <div class="input-wrapper">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Masukkan password"
+              autocomplete="current-password"
+              required
+            />
+
+          </div>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+          type="submit"
+          class="login-btn"
+          id="loginBtn"
+        >
+
+          <i class="fa-solid fa-right-to-bracket"></i>
+
+          Masuk ke Dashboard
+
+        </button>
+
+
+      </form>
+
+
+      <!-- BACK -->
+
+      <div class="back-home">
+
+        <a href="index.html">
+
+          <i class="fa-solid fa-arrow-left"></i>
+
+          Kembali ke Website
+
+        </a>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="login-footer">
+
+      © 2024 Desa Semparuk Sutera
+
+    </div>
+
+
+  </div>
+
+
+  <script>
+
+    /* ========================================
+       LOGIN CONFIGURATION
+    ======================================== */
+
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "admin123";
+
+
+    /* ========================================
+       ELEMENT
+    ======================================== */
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const loginAlert =
+      document.getElementById("loginAlert");
+
+
+    /* ========================================
+       ALERT
+    ======================================== */
+
+    function showAlert(message, type) {
+
+      loginAlert.className =
+        "login-alert show " + type;
+
+      loginAlert.textContent =
+        message;
+
+    }
+
+
+    /* ========================================
+       LOGIN
+    ======================================== */
+
+    loginForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const username =
+          document
+            .getElementById("username")
+            .value
+            .trim();
+
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        loginBtn.disabled = true;
+
+        loginBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Memeriksa...';
+
+
+        setTimeout(function() {
+
+
+          if (
+            username === ADMIN_USERNAME &&
+            password === ADMIN_PASSWORD
+          ) {
+
+
+            sessionStorage.setItem(
+              "adminLogin",
+              "true"
+            );
+
+
+            sessionStorage.setItem(
+              "adminUsername",
+              username
+            );
+
+
+            showAlert(
+              "Login berhasil. Mengalihkan ke dashboard...",
+              "success"
+            );
+
+
+            setTimeout(function() {
+
+              window.location.href =
+                "admin.html";
+
+            }, 500);
+
+
+          } else {
+
+
+            showAlert(
+              "Username atau password salah.",
+              "error"
+            );
+
+
+            loginBtn.disabled = false;
+
+            loginBtn.innerHTML =
+              '<i class="fa-solid fa-right-to-bracket"></i> Masuk ke Dashboard';
+
+          }
+
+        }, 400);
+
+      }
+    );
+
+
+    /* ========================================
+       JIKA SUDAH LOGIN
+    ======================================== */
+
+    if (
+      sessionStorage.getItem("adminLogin") ===
+      "true"
+    ) {
+
+      window.location.href =
+        "admin.html";
+
+    }
+
+  </script>
+
+</body>
+</html>
